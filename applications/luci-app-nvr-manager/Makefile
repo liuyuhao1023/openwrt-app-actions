@@ -1,16 +1,10 @@
-#
-# Copyright (C) 2026 Gilbert Liu & Contributors
-#
-# This is free software, licensed under the MIT License.
-#
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-nvr-manager
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 PKG_LICENSE:=MIT
-PKG_MAINTAINER:=Gilbert Liu & Contributors
+PKG_MAINTAINER:=liuyuhao1023
 
 LUCI_TITLE:=LuCI support for NVR Camera Surveillance System
 LUCI_DESCRIPTION:=High-performance Network Video Recorder (NVR) surveillance system with multi-camera live view, direct streaming recording and NAS integration.
@@ -25,9 +19,6 @@ define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	chmod 755 /etc/init.d/nvr-manager 2>/dev/null || true
-	chmod 755 /mnt/sata1-4/nvr-manager/nvr-manager 2>/dev/null || true
-	chmod 755 /mnt/sata1-4/nvr-manager/mediamtx 2>/dev/null || true
-	/etc/init.d/nvr-manager enable 2>/dev/null || true
 	/etc/init.d/rpcd reload 2>/dev/null || true
 	rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/
 fi
